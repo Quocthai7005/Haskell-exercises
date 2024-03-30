@@ -14,3 +14,13 @@ what is the difference between 'print' and 'putStrLn'
 print a = putStrLn $ show a
 with a derived from 'Show'
 -}
+
+{- Runs fibonacci counter method
+import Fibonacci as Fib
+main :: IO ()
+main = print $ Fib.fibonacci 5
+-}
+
+
+
+
