@@ -29,6 +29,7 @@ library
       Fibonacci
       Lib
       ManualCurrying
+      ReversingList
   other-modules:
       Paths_Haskell_exercises
   autogen-modules:

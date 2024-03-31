@@ -1,8 +1,14 @@
 module Main (main) where
-
+import ReversingList as RL
 
 main :: IO ()
-main = putStrLn "test"
+main = print $ RL.foldlReverse [1,2,3,4,5]
+
+{- Runs reversing list function
+main :: IO ()
+main = print $ RL.foldlReverse [1,2,3,4,5]
+main = print $ RL.foldrReverse [1,2,3,4,5]
+-}
 
 {- Runs uncurrying function
 import ManualCurrying as Ma
