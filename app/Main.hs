@@ -1,8 +1,8 @@
 module Main (main) where
-import ReversingList as RL
+import CreditCardNumberValidator as CC
 
 main :: IO ()
-main = print $ RL.foldlReverse [1,2,3,4,5]
+main = print $ CC.toDigitsRev "123456"
 
 {- Runs reversing list function
 main :: IO ()
