@@ -28,6 +28,7 @@ library
       Factorials
       Fibonacci
       Lib
+      ManualCurrying
   other-modules:
       Paths_Haskell_exercises
   autogen-modules:

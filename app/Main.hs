@@ -1,9 +1,23 @@
 module Main (main) where
 
-import Lib
 
 main :: IO ()
-main = someFunc3 someFunc2
+main = putStrLn "test"
+
+{- Runs uncurrying function
+import ManualCurrying as Ma
+main :: IO ()
+main = print $ addOne 2
+manualUncurriedFunction = Ma.manualCurry uncurriedAddition
+addOne = manualUncurriedFunction 1
+uncurriedAddition :: Num c => (c, c) -> c
+uncurriedAddition nums =
+  let
+    a = fst nums
+    b = snd nums
+  in a + b
+-}
+
 
 {- Runs factorial method
 import Factorials as Fac
