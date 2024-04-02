@@ -2,7 +2,7 @@ module Main (main) where
 import CreditCardNumberValidator as CC
 
 main :: IO ()
-main = print $ CC.toDigitsRev "123456"
+main = print $ CC.doubleEveryOther [1,2,3,4,5,6]
 
 {- Runs reversing list function
 main :: IO ()
