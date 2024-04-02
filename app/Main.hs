@@ -2,7 +2,7 @@ module Main (main) where
 import CreditCardNumberValidator as CC
 
 main :: IO ()
-main = print $ CC.doubleEveryOther [1,2,3,4,5,6]
+main = print $ CC.sumDigit [4567,4567]
 
 {- Runs reversing list function
 main :: IO ()
