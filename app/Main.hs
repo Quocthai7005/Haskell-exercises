@@ -2,7 +2,10 @@ module Main (main) where
 import CreditCardNumberValidator as CC
 
 main :: IO ()
-main = print $ CC.sumDigit [4567,4567]
+main = do
+    print $ "type your credit card no: "
+    numberInString <- getLine
+    print $ validate numberInString
 
 {- Runs reversing list function
 main :: IO ()
