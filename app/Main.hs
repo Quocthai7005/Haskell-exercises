@@ -1,11 +1,17 @@
 module Main (main) where
-import CreditCardNumberValidator as CC
+import TheTowerOfHanoi as TT
 
+
+main :: IO ()
+main = print $ TT.hanoi 5 "a" "b" "s"
+
+{- Run credit card validator
 main :: IO ()
 main = do
     print $ "type your credit card no: "
     numberInString <- getLine
     print $ validate numberInString
+-}
 
 {- Runs reversing list function
 main :: IO ()
