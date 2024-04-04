@@ -29,6 +29,7 @@ library
       Factorials
       Fibonacci
       Lib
+      LogParser
       ManualCurrying
       ReversingList
       TheTowerOfHanoi
