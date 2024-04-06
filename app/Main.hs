@@ -1,9 +1,10 @@
 module Main (main) where
-import TheTowerOfHanoi as TT
-
+import LogParser as LP
 
 main :: IO ()
-main = print $ TT.hanoi 5 "a" "b" "s"
+main = do
+    contents <- readFile "C:/Users/thainguyen/Resources/Haskell/logFile.txt"
+    print $ map (LP.parseMessage . words) (lines contents)
 
 {- Run credit card validator
 main :: IO ()
