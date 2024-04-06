@@ -1,10 +1,12 @@
 module Main (main) where
 import LogParser as LP
+import LogParser (MessageTree(Leaf), lineStringToLogMessage, buildMessageTree)
 
 main :: IO ()
 main = do
     contents <- readFile "C:/Users/thainguyen/Resources/Haskell/logFile.txt"
-    print $ map (LP.parseMessage . words) (lines contents)
+    print $ buildMessageTree (map lineStringToLogMessage (lines contents))
+
 
 {- Run credit card validator
 main :: IO ()
