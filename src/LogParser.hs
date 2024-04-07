@@ -41,9 +41,11 @@ instance Eq LogMessage where
     (LogMessage _ s1 _) == (LogMessage _ s2 _) = s1 == s2
 
 insertMessage :: MessageTree -> LogMessage -> MessageTree
-insertMessage mt m = case mt of
-                Leaf -> Node Leaf m Leaf
-                Node t1 mx t2 -> if m < mx then Node (insertMessage t1 m) mx t2 else Node t1 mx (insertMessage t2 m)
+insertMessage mt m = case m of 
+                        Unknown _ -> mt
+                        LogMessage {} -> case mt of
+                                    Leaf -> Node Leaf m Leaf
+                                    Node t1 mx t2 -> if m < mx then Node (insertMessage t1 m) mx t2 else Node t1 mx (insertMessage t2 m)
 
 lineStringToLogMessage :: String -> LogMessage
 lineStringToLogMessage = parseMessage . words
