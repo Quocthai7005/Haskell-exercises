@@ -28,6 +28,7 @@ library
       CreditCardNumberValidator
       Factorials
       Fibonacci
+      Golf
       Lib
       LogParser
       ManualCurrying

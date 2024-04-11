@@ -1,12 +1,16 @@
 module Main (main) where
-import LogParser as LP
-import LogParser (MessageTree(Leaf), lineStringToLogMessage, buildMessageTree)
+import Golf as G
+import qualified Golf as G
+import Golf (skipEvery)
 
+main = do
+  print $ skipEvery 2 "12345678"
+{-
 main :: IO ()
 main = do
     contents <- readFile "C:/Users/thainguyen/Resources/Haskell/logFile.txt"
     print $ buildMessageTree (map lineStringToLogMessage (lines contents))
-
+-}
 
 {- Run credit card validator
 main :: IO ()
