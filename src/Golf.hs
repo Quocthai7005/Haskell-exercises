@@ -1,4 +1,4 @@
-module Golf (skipEvery, duplicateList, repeatList) where
+module Golf (skip) where
 
 skipEvery :: Int -> [a] -> [a]
 skipEvery _ [] = []
@@ -9,11 +9,12 @@ skipEvery n xs =
         [] -> []
         r:rd -> r : skipEvery n rd
 
-duplicateList :: [a] -> Int -> [[a]]
-duplicateList xs n
-                  | n > 0 = xs : duplicateList xs (n - 1)
-                  | n == 0 = []
-                  | otherwise = error ""
+skipBy :: Int -> [a] -> [[a]]
+skipBy n xs 
+    | n >= length xs = []
+    | n < length xs = (skipEvery (n) xs) : (skipBy (n+1) xs)
+    | length xs == 0 = []
 
-repeatList :: [a] -> [[a]]
-repeatList xs = duplicateList xs (length xs)
+skip :: [a] -> [[a]]
+skip = skipBy 1
+

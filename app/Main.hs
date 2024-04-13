@@ -1,10 +1,9 @@
 module Main (main) where
 import Golf as G
-import qualified Golf as G
-import Golf (skipEvery, duplicateList)
 
+main :: IO ()
 main = do
-  print $ duplicateList "12345678" 2
+  print $ G.skip "12345678"
 {-
 main :: IO ()
 main = do
