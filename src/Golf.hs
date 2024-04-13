@@ -11,9 +11,8 @@ skipEvery n xs =
 
 skipBy :: Int -> [a] -> [[a]]
 skipBy n xs 
-    | n >= length xs = []
-    | n < length xs = (skipEvery (n) xs) : (skipBy (n+1) xs)
-    | length xs == 0 = []
+    | n < length xs = skipEvery n xs : skipBy (n+1) xs
+    | otherwise = []
 
 skip :: [a] -> [[a]]
 skip = skipBy 1
@@ -21,12 +20,21 @@ skip = skipBy 1
 chunkInThree :: Num a => [a] -> [[a]]
 chunkInThree xs = case xs of 
     x:y:z:xz -> [x,y,z] : chunkInThree (y:z:xz)
-    x:y:[] -> []
-    x:[] -> []
+    _ -> []
 
-filterMaximaTriple xs = filter (\(x:y:z:[]) -> y > z && y > x) (chunkInThree xs)
+filterMaximaTriple :: (Ord a, Num a) => [a] -> [[a]]
+filterMaximaTriple xs = filter checkMaxima (chunkInThree xs)
 
-localMaxima xs = map (\(x:y:z:[]) -> y) (filterMaximaTriple xs)
+checkMaxima :: Ord a => [a] -> Bool
+checkMaxima [x,y,z] = y > z && y > x
+checkMaxima _ = False
+
+getMaxima :: [a] -> a
+getMaxima [_,y,_] = y
+getMaxima _ = error "Not supported"
+
+localMaxima :: [Int] -> [Int]
+localMaxima xs = map getMaxima (filterMaximaTriple xs)
 
 
 
