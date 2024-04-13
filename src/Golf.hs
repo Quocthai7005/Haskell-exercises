@@ -1,4 +1,4 @@
-module Golf (skip) where
+module Golf (skip, chunkInThree, localMaxima) where
 
 skipEvery :: Int -> [a] -> [a]
 skipEvery _ [] = []
@@ -17,4 +17,16 @@ skipBy n xs
 
 skip :: [a] -> [[a]]
 skip = skipBy 1
+
+chunkInThree :: Num a => [a] -> [[a]]
+chunkInThree xs = case xs of 
+    x:y:z:xz -> [x,y,z] : chunkInThree (y:z:xz)
+    x:y:[] -> []
+    x:[] -> []
+
+filterMaximaTriple xs = filter (\(x:y:z:[]) -> y > z && y > x) (chunkInThree xs)
+
+localMaxima xs = map (\(x:y:z:[]) -> y) (filterMaximaTriple xs)
+
+
 
