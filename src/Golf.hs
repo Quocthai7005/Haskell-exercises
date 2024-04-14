@@ -1,4 +1,4 @@
-module Golf (skip, chunkInThree, localMaxima) where
+module Golf (skip, chunkInThree, localMaxima, upVal, createListMatrix) where
 
 skipEvery :: Int -> [a] -> [a]
 skipEvery _ [] = []
@@ -36,5 +36,29 @@ getMaxima _ = error "Not supported"
 localMaxima :: [Int] -> [Int]
 localMaxima xs = map getMaxima (filterMaximaTriple xs)
 
+originalListMatrix :: [(Int, Int)]
+originalListMatrix = [(1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0), (8, 0), (9, 0)]
 
+createListMatrix :: (Foldable t) => t Int -> [(Int, Int)]
+createListMatrix = foldl upVal originalListMatrix
+
+{-
+upVal :: [(Int, Int)] -> Int -> [(Int, Int)]
+upVal ((1, a):xs) 1 = (1, a+1):xs
+upVal (xa:(2, a):xs) 2 = xa:(2, a+1):xs
+upVal (xa:(3, a):xs) 3 = xa:(3, a+1):xs
+upVal (xa:(4, a):xs) 4 = xa:(4, a+1):xs
+upVal (xa:(5, a):xs) 5 = xa:(5, a+1):xs
+upVal (xa:(6, a):xs) 6 = xa:(6, a+1):xs
+upVal (xa:(7, a):xs) 7 = xa:(7, a+1):xs
+upVal (xa:(8, a):xs) 8 = xa:(8, a+1):xs
+upVal (xa:(9, a):xs) 9 = xa:(9, a+1):xs
+upVal xs _ = xs
+-}
+
+upVal :: [(Int, Int)] -> Int -> [(Int, Int)]
+upVal [] _ = []  -- Base case: empty list, return empty list
+upVal ((x, a):xs) n
+    | x == n    = (x, a + 1) : xs  -- If first element matches n, increment second element
+    | otherwise = (x, a) : upVal xs n  -- Otherwise, keep current tuple and recurse on rest of the list
 

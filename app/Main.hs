@@ -2,7 +2,7 @@ module Main (main) where
 import Golf as G
 
 main :: IO ()
-main = print $ G.localMaxima [1,8,3,4,9,6]
+main = print $ G.createListMatrix [1,1,3,3,1,1]
 {-
 main :: IO ()
 main = do
