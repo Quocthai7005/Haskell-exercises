@@ -62,3 +62,9 @@ upVal ((x, a):xs) n
     | x == n    = (x, a + 1) : xs  -- If first element matches n, increment second element
     | otherwise = (x, a) : upVal xs n  -- Otherwise, keep current tuple and recurse on rest of the list
 
+maxVal :: [(Int, Int)] -> (Int, Int)
+maxVal = foldl findMax (0, 0)
+
+findMax :: Ord a => (a, a) -> (a, a) -> (a, a)
+findMax (a, b) (x,y) = if b > y then (a, b) else (x, y)
+
