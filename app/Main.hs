@@ -2,7 +2,7 @@ module Main (main) where
 import Golf as G
 
 main :: IO ()
-main = print $ G.createListMatrix [1,1,3,3,1,1]
+main = print $ G.createMatrix (createHistogramMatrix . maxVal $ G.createListMatrix [1,1,3,3,1,1])
 {-
 main :: IO ()
 main = do

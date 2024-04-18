@@ -1,4 +1,5 @@
-module Golf (skip, chunkInThree, localMaxima, upVal, createListMatrix) where
+module Golf (skip, chunkInThree, localMaxima, upVal, createListMatrix, maxVal, createHistogramMatrix, createMatrix) where
+import Data.Matrix as M ( matrix, Matrix )
 
 skipEvery :: Int -> [a] -> [a]
 skipEvery _ [] = []
@@ -67,4 +68,10 @@ maxVal = foldl findMax (0, 0)
 
 findMax :: Ord a => (a, a) -> (a, a) -> (a, a)
 findMax (a, b) (x,y) = if b > y then (a, b) else (x, y)
+
+createHistogramMatrix :: Num a => (a, a) -> (a, a)
+createHistogramMatrix (_, x) = (9, x)
+
+createMatrix :: Num a => (Int, Int) -> Matrix a
+createMatrix (x, y) = M.matrix x y (\(_,_) -> 0)
 

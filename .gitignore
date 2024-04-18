@@ -1,2 +1,11 @@
 .stack-work/
 *~
+dist-newstyle/cache/compiler
+dist-newstyle/cache/config
+dist-newstyle/cache/elaborated-plan
+dist-newstyle/cache/improved-plan
+dist-newstyle/cache/solver-plan
+dist-newstyle/cache/source-hashes
+dist-newstyle/cache/plan.json
+stack.yaml.lock
+stack.yaml.lock
