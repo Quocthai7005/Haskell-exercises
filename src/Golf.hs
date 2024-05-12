@@ -1,5 +1,5 @@
-module Golf (skip, chunkInThree, localMaxima, upVal, createListMatrix, maxVal, createHistogramMatrix, createMatrix) where
-import Data.Matrix as M ( matrix, Matrix, setElem )
+module Golf (skip, chunkInThree, localMaxima, upVal, createListMatrix, maxVal, createHistogramMatrix, createMatrix, setValue) where
+import Data.Matrix as M ( matrix, Matrix, setElem)
 
 skipEvery :: Int -> [a] -> [a]
 skipEvery _ [] = []
@@ -70,7 +70,7 @@ findMax :: Ord a => (a, a) -> (a, a) -> (a, a)
 findMax (a, b) (x,y) = if b > y then (a, b) else (x, y)
 
 createHistogramMatrix :: Num a => (a, a) -> (a, a)
-createHistogramMatrix (_, x) = (9, x)
+createHistogramMatrix (_, x) = (x, 9)
 
 createMatrix :: (Int, Int) -> Matrix Char
 createMatrix (x, y) = M.matrix x y (\(_,_) -> ' ')
@@ -80,10 +80,14 @@ setValue :: [Int] -> Matrix Char
 setValue xs = let mList = createListMatrix xs
                   maxMVal = maxVal mList
                   ma = createMatrix $ createHistogramMatrix maxMVal
-              in
-                 case mList of
-                    (x, y):xa -> if y>=0 then setElem '*' (x,y) ma
+              in setAllValue mList ma
 
+setElemWithAsterisk :: (Int, Int) -> Matrix Char -> Matrix Char
+setElemWithAsterisk = setElem '*'
+
+changeOrder :: Matrix Char -> (Int, Int) ->  Matrix Char
+changeOrder ma (x,y) = setElemWithAsterisk (10-y, x) ma
 
 setAllValue :: [(Int, Int)] -> Matrix Char -> Matrix Char
+setAllValue xs ma = foldl changeOrder ma xs
 
